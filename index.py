@@ -33,13 +33,13 @@ class Instagram:
     def get_posts_count(self, user_info):
         likes           = 0
         comments        = 0
-        count_of_posts  = len(user_info["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"])
-
+        count_of_posts  = user_info["graphql"]["user"]["edge_owner_to_timeline_media"]["count"]
+        posts = len(user_info["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"])
         for i in user_info["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"]:
             comments    +=i["node"]["edge_media_to_comment"]["count"]
             likes       +=i["node"]["edge_liked_by"]["count"]
 
-        return count_of_posts,comments,likes
+        return count_of_posts,comments,likes,posts
 
 headers = {
  "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -52,10 +52,12 @@ l = m.get_posts_count(t)
 
 os.system('cls')
 
-print("\033[1;32;40m Имя пользователя    : "+ f"\033[1;31;40m {m.get_name(t)}")
-print("\033[1;32;40m Кол-во подписчиков  : "+ f"\033[1;31;40m {m.get_count_subscribers(t)}")
-print("\033[1;32;40m Кол-во постов       : "+ f"\033[1;31;40m {l[0]}")
-print("\033[1;32;40m Кол-во комментариев : "+ f"\033[1;31;40m {l[1]}")
-print("\033[1;32;40m Кол-во лайков       : "+ f"\033[1;31;40m {l[2]}")
-print("\033[1;32;40m Сред. кол-во лайков : "+ f"\033[1;31;40m {l[2]/l[0]}")
-print("\033[1;32;40m Сред. кол-во комм.  : "+ f"\033[1;31;40m {l[1]/l[0]}")
+print("\033[1;32;40m Имя пользователя    | "+ f"\033[1;31;40m {m.get_name(t)}")
+print("\033[1;32;40m Кол-во подписчиков  | "+ f"\033[1;31;40m {m.get_count_subscribers(t)}")
+print("\033[1;32;40m Кол-во постов       | "+ f"\033[1;31;40m {l[0]}")
+print("\033[1;32;40m -----------------------------------------------")
+print("\033[1;32;40m Последних постов    | "+ f"\033[1;31;40m {l[3]}")
+print("\033[1;32;40m Кол-во комментариев | "+ f"\033[1;31;40m {l[1]}")
+print("\033[1;32;40m Кол-во лайков       | "+ f"\033[1;31;40m {l[2]}")
+print("\033[1;32;40m Сред. кол-во лайков | "+ f"\033[1;31;40m {l[2]/l[3]}")
+print("\033[1;32;40m Сред. кол-во комм.  | "+ f"\033[1;31;40m {l[1]/l[3]}")
