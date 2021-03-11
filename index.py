@@ -1,6 +1,6 @@
 import requests
 import json
-url = input('Введите ссылку на профиль: ')
+url = input('Write account url please : ')
 import os
 class Instagram:
     
@@ -52,12 +52,12 @@ l = m.get_posts_count(t)
 
 os.system('cls')
 
-print("\033[1;32;40m Имя пользователя    | "+ f"\033[1;31;40m {m.get_name(t)}")
-print("\033[1;32;40m Кол-во подписчиков  | "+ f"\033[1;31;40m {m.get_count_subscribers(t)}")
-print("\033[1;32;40m Кол-во постов       | "+ f"\033[1;31;40m {l[0]}")
+print("\033[1;32;40m account name         | "+ f"\033[1;31;40m {m.get_name(t)}")
+print("\033[1;32;40m Followers number     | "+ f"\033[1;31;40m {m.get_count_subscribers(t)}")
+print("\033[1;32;40m Posts number         | "+ f"\033[1;31;40m {l[0]}")
 print("\033[1;32;40m -----------------------------------------------")
-print("\033[1;32;40m Последних постов    | "+ f"\033[1;31;40m {l[3]}")
-print("\033[1;32;40m Кол-во комментариев | "+ f"\033[1;31;40m {l[1]}")
-print("\033[1;32;40m Кол-во лайков       | "+ f"\033[1;31;40m {l[2]}")
-print("\033[1;32;40m Сред. кол-во лайков | "+ f"\033[1;31;40m {l[2]/l[3]}")
-print("\033[1;32;40m Сред. кол-во комм.  | "+ f"\033[1;31;40m {l[1]/l[3]}")
+print("\033[1;32;40m Number of last posts | "+ f"\033[1;31;40m {l[3]}")
+print("\033[1;32;40m Comments in last post| "+ f"\033[1;31;40m {l[1]}")
+print("\033[1;32;40m likes in last posts  | "+ f"\033[1;31;40m {l[2]}")
+print("\033[1;32;40m likes midle avg      | "+ f"\033[1;31;40m {l[2]/l[3]}")
+print("\033[1;32;40m comments midle avg   | "+ f"\033[1;31;40m {l[1]/l[3]}")
